@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.sddevops</groupId>
+  <artifactId>sddo_pdc1_sonarqube_maven.eclipse</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+
+  <name>sddo_pdc1_sonarqube_maven.eclipse</name>
+  <url>http://www.example.com</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+
+   <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.8.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.sonarsource.scanner.maven</groupId>
+            <artifactId>sonar-maven-plugin</artifactId>
+            <version>3.9.1.2184</version>
+        </dependency>
+    </dependencies>
+
+   <build>
+        <plugins>
+        	<plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.8</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>jacoco-report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <!-- default target/site/jacoco/* -->
+                        <configuration>
+                            <outputDirectory>target/site/jacoco-report</outputDirectory>
+                            <skip>${jacoco.skip}</skip>
+                        </configuration>
+                    </execution>
+                    <!-- Add this part for specify rules of checking -->
+                    <execution>
+                        <id>jacoco-check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                    <!--Added for code coverage report aggregation, This is an optional Tag. Not mandatory -->
+                    <execution>
+                        <id>report-aggregate</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>report-aggregate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+   </build>
+   
+   <profiles>
+	    <profile>
+	        <id>sonar</id>
+	        <activation>
+	            <activeByDefault>true</activeByDefault>
+	        </activation>
+	        <properties>
+	            <!-- 
+	            Default url is http://localhost:9000, 
+	            You can speficy your any sonarqube url value which you are using
+	            -->
+	            <sonar.host.url>
+	                http://localhost:9000
+	            </sonar.host.url>
+	           
+	            <!-- Generate token by login as admin User in your SonarQube site, 
+	            steps given below -->
+	            <!--
+	                 User > My Account > Security -> Enter Token Name
+	                 Click the Generate button, you will see the token value.
+	                 (Copy it immediately; 
+	                 Once you dismiss the notification you will not be able to retrieve it.)
+	            -->
+	         
+	            <sonar.coverage.jacoco.xmlReportPaths>
+	                ${project.basedir}/target/site/jacoco-report/jacoco.xml
+	            </sonar.coverage.jacoco.xmlReportPaths>
+	        </properties>
+	    </profile>
+	</profiles>
+</project>
