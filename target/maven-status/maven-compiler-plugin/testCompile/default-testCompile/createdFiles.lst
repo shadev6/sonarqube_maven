@@ -1,4 +1,4 @@
-com/sddevops/sonarqube_maven/eclipse/CalculationTest.class
-com/sddevops/sonarqube_maven/eclipse/TestMessageBuilder.class
-com/sddevops/sonarqube_maven/eclipse/AdditionTest.class
-com/sddevops/sonarqube_maven/eclipse/SongCollectionTest.class
+com\sddevops\sonarqube_maven\eclipse\CalculationTest.class
+com\sddevops\sonarqube_maven\eclipse\AdditionTest.class
+com\sddevops\sonarqube_maven\eclipse\SongCollectionTest.class
+com\sddevops\sonarqube_maven\eclipse\TestMessageBuilder.class
