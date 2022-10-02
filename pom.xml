@@ -93,6 +93,10 @@
 	                http://localhost:9000
 	            </sonar.host.url>
 	           
+		<sonar.projectKey>
+                   	com.sddevops:sddo_pdc1_sonarqube_maven.eclipse
+                </sonar.projectKey>
+			
 	            <!-- Generate token by login as admin User in your SonarQube site, 
 	            steps given below -->
 	            <!--
